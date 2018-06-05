@@ -80,6 +80,7 @@ interface OrcaService {
                                    @Query("pageSize") int pageSize,
                                    @Query("reverse") boolean reverse,
                                    @Query("expand") boolean expand,
+                                   @Query("trigger") String trigger,
                                    @Query("params") Map params)
 
   @Headers("Accept: application/json")

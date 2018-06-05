@@ -57,8 +57,9 @@ public class ExecutionsController {
     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
     @RequestParam(value = "reverse", defaultValue = "false") boolean reverse,
     @RequestParam(value = "expand", defaultValue = "false") boolean expand,
+    @RequestParam(value = "trigger", required = false) String trigger, // base64 encoded json
     @RequestParam Map<String, String> params
   ) {
-    return orcaServiceSelector.withContext(RequestContext.get()).searchForPipelineExecutions(application, statuses, buildTimeStartBoundary, buildTimeEndBoundary, page, pageSize, reverse, expand, params);
+    return orcaServiceSelector.withContext(RequestContext.get()).searchForPipelineExecutions(application, statuses, buildTimeStartBoundary, buildTimeEndBoundary, page, pageSize, reverse, expand, trigger, params);
   }
 }
