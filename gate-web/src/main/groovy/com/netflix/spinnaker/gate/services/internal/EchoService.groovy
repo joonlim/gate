@@ -16,20 +16,19 @@
 
 package com.netflix.spinnaker.gate.services.internal
 
-import retrofit.client.Response
 import retrofit.http.*
 
 interface EchoService {
 
   @Headers("Accept: application/json")
   @POST("/webhooks/{type}/{source}")
-  Response webhooks(@Path('type') String type,
+  Map webhooks(@Path('type') String type,
                     @Path('source') String source,
                     @Body Map event)
 
   @Headers("Accept: application/json")
   @POST("/webhooks/{type}/{source}")
-  Response webhooks(@Path('type') String type,
+  Map webhooks(@Path('type') String type,
                     @Path('source') String source,
                     @Body Map event,
                     @Header("X-Hub-Signature") String gitHubSignature,

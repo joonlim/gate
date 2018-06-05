@@ -51,4 +51,15 @@ class ExecutionHistoryService {
     }
     return command.execute()
   }
+
+  // TODO(joonlim)
+  List getPipelinesExecutionsForTrigger(String app, Map trigger, Integer limit, String statuses, Boolean expand) {
+    Preconditions.checkNotNull(app)
+    RequestContext requestContext = RequestContext.get()
+    // TODO(joonlim) what is hystrixfactory
+    def command = HystrixFactory.newListCommand("pipelineExecutionForTriggerHistory", "getPipelinesForAppForTrigger-$app") {
+      orcaServiceSelector.withContext(requestContext).getPipelinesForTrigger(app, trigger, limit, statuses, expand)
+    }
+    return command.execute()
+  }
 }

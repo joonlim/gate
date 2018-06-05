@@ -41,6 +41,11 @@ interface OrcaService {
   @GET("/v2/applications/{application}/pipelines")
   List getPipelines(@Path("application") String app, @Query("limit") Integer limit, @Query("statuses") String statuses, @Query("expand") Boolean expand)
 
+  // TODO(joonlim):
+  @Headers("Accept: application/json")
+  @GET("/applications/{application}/pipelines/trigger")
+  List getPipelinesForTrigger(@Path("application") String app, @Body Map trigger, @Query("limit") Integer limit, @Query("statuses") String statuses, @Query("expand") Boolean expand)
+
   @Headers("Accept: application/json")
   @GET("/projects/{projectId}/pipelines")
   List<Map> getPipelinesForProject(@Path("projectId") String projectId, @Query("limit") Integer limit, @Query("statuses") String statuses)

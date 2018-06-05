@@ -63,6 +63,13 @@ interface Front50Service {
   //
   // Pipeline Strategy-related
   //
+  @GET('/strategies/{strategyConfigId}/history')
+  List<Map> getStrategyConfigHistory(@Path("strategyConfigId") strategyConfigId,
+                                     @Query("limit") int limit)
+
+  @PUT("/strategies/{strategyId}")
+  Map updateStrategy(@Path("strategyId") String strategyId, @Body Map strategy)
+
   @GET('/strategies')
   List<Map> getAllStrategyConfigs()
 
@@ -77,13 +84,6 @@ interface Front50Service {
 
   @POST('/strategies/move')
   Response moveStrategyConfig(@Body Map moveCommand)
-
-  @GET('/strategies/{strategyConfigId}/history')
-  List<Map> getStrategyConfigHistory(@Path("strategyConfigId") strategyConfigId,
-                                     @Query("limit") int limit)
-
-  @PUT("/strategies/{strategyId}")
-  Map updateStrategy(@Path("strategyId") String strategyId, @Body Map strategy)
 
   //
   // Pipeline Template-related

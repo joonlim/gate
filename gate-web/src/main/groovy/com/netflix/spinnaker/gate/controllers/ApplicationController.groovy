@@ -120,6 +120,18 @@ class ApplicationController {
     executionHistoryService.getPipelines(application, listLimit, statuses, expand)
   }
 
+  // TODO(joonlim)
+  @ApiOperation(value = "Retrieve a list of an application's pipeline executions that match a subset of trigger descriptions", response = List.class)
+  @RequestMapping(value = "/{application}/pipelines/trigger", method = RequestMethod.GET)
+  List getPipelineExecutionsForTrigger(@PathVariable("application") String application,
+                                       @RequestBody Map trigger, // Only has to match fields given. Missing fields are ignored when filtering
+                                       @RequestParam(value = "limit", required = false) Integer limit,
+                                       @RequestParam(value = "statuses", required = false) String statuses,
+                                       @RequestParam(value = "expand", required = false) Boolean expand) {
+    def listLimit = limit ?: environment.getProperty(PIPELINE_EXECUTION_LIMIT, Integer, 10)
+    executionHistoryService.getPipelinesExecutionsForTrigger(application, trigger, listLimit, statuses, expand)
+  }
+
   /**
    * @deprecated There is no reason to provide an app name, use PipelineController instead for pipeline operations.
    */

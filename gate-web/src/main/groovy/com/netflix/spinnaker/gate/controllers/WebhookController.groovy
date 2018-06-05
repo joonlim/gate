@@ -35,7 +35,7 @@ class WebhookController {
 
   @ApiOperation(value = "Endpoint for posting webhooks to Spinnaker's webhook service")
   @RequestMapping(value = "/{type}/{source}", method = RequestMethod.POST)
-  void webhooks(@PathVariable("type") String type,
+  Map webhooks(@PathVariable("type") String type,
                 @PathVariable("source") String source,
                 @RequestBody Map event,
                 @RequestHeader(value = "X-Hub-Signature", required = false) String gitHubSignature,
