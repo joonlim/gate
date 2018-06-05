@@ -66,6 +66,20 @@ interface OrcaService {
   List getLatestExecutionsByConfigIds(@Query("pipelineConfigIds") String pipelineConfigIds, @Query("limit") Integer limit, @Query("statuses") String statuses)
 
   @Headers("Accept: application/json")
+  @GET("/pipelines/{application}/search/{triggerType}")
+  List searchForPipelineExecutions(@Path("application") String application,
+                                   @Path("triggerType") String triggerType,
+                                   @Query("eventId") String eventId,
+                                   @Query("encodedTriggerParams") String encodedTriggerParams,
+                                   @Query("buildTimeStartBoundary") long buildTimeStartBoundary,
+                                   @Query("buildTimeEndBoundary") long buildTimeEndBoundary,
+                                   @Query("statuses") String statuses,
+                                   @Query("page") int page,
+                                   @Query("pageSize") int pageSize,
+                                   @Query("reverse") boolean reverse,
+                                   @Query("expand") boolean expand)
+
+  @Headers("Accept: application/json")
   @GET("/pipelines/{id}")
   Map getPipeline(@Path("id") String id)
 
